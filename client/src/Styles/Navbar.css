@@ -1,0 +1,29 @@
+.nav {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #4287f5;
+}
+
+.nav .logo {
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px;
+  margin-left: 5px;
+}
+
+.nav .logo h2 {
+  margin-left: 10px;
+  color: #fafcff;
+  font-size: 30px;
+}
+
+.nav .logo .shopping-cart-logo {
+  width: 45px;
+  margin-left: 10px;
+  color: #fafcff;
+}
+/*# sourceMappingURL=Navbar.css.map */

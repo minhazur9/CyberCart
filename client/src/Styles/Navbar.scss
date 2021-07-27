@@ -1,0 +1,21 @@
+.nav {
+  position: relative;
+  display: flex;
+  background-color: #4287f5;
+  .logo {
+    text-decoration: none;
+    display: flex;
+    margin: 10px;
+    margin-left: 5px;
+    h2 {
+      margin-left: 10px;
+      color: #fafcff;
+      font-size: 30px;
+    }
+    .shopping-cart-logo {
+      width: 45px;
+      margin-left: 10px;
+      color: #fafcff;
+    }
+  }
+}
