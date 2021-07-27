@@ -1,13 +1,25 @@
 import React from 'react';
 import './App.css';
+import { createTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from './Components/Navbar';
 import Routes from './config/routes';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#2d78f0"
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Routes />
+      <ThemeProvider theme={theme}>
+        <Navbar />
+        <Routes />
+      </ThemeProvider>
+
     </div>
   );
 }

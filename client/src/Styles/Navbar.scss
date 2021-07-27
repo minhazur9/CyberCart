@@ -1,14 +1,17 @@
 .nav {
   position: relative;
   display: flex;
-  background-color: #4287f5;
+  justify-content: space-around;
+  background-color: #2d78f0;
   .logo {
+    flex: 1;
     text-decoration: none;
     display: flex;
     margin: 10px;
     margin-left: 5px;
     h2 {
       margin-left: 10px;
+      margin-top: 5px;
       color: #fafcff;
       font-size: 30px;
     }
@@ -16,6 +19,29 @@
       width: 45px;
       margin-left: 10px;
       color: #fafcff;
+    }
+  }
+  .shop-button {
+    flex: 0.7;
+    color: #fafcff;
+    margin-top: 20px;
+    margin-left: 10px;
+    h2 {
+      font-size: 25px;
+    }
+  }
+
+  .search {
+    flex: 8;
+    margin: 10px;
+    font-size: 50px;
+  }
+
+  .cart-button {
+    flex: 0.7;
+    .cart {
+      width: 50px;
+      margin: 10px;
     }
   }
 }

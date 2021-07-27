@@ -3,10 +3,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #4287f5;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #2d78f0;
 }
 
 .nav .logo {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   text-decoration: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,6 +22,7 @@
 
 .nav .logo h2 {
   margin-left: 10px;
+  margin-top: 5px;
   color: #fafcff;
   font-size: 30px;
 }
@@ -25,5 +31,37 @@
   width: 45px;
   margin-left: 10px;
   color: #fafcff;
+}
+
+.nav .shop-button {
+  -webkit-box-flex: 0.7;
+      -ms-flex: 0.7;
+          flex: 0.7;
+  color: #fafcff;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.nav .shop-button h2 {
+  font-size: 25px;
+}
+
+.nav .search {
+  -webkit-box-flex: 8;
+      -ms-flex: 8;
+          flex: 8;
+  margin: 10px;
+  font-size: 50px;
+}
+
+.nav .cart-button {
+  -webkit-box-flex: 0.7;
+      -ms-flex: 0.7;
+          flex: 0.7;
+}
+
+.nav .cart-button .cart {
+  width: 50px;
+  margin: 10px;
 }
 /*# sourceMappingURL=Navbar.css.map */
