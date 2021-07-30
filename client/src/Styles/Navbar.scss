@@ -26,6 +26,7 @@
     color: #fafcff;
     margin-top: 20px;
     margin-left: 10px;
+    cursor: default;
     h2 {
       font-size: 25px;
     }
@@ -35,6 +36,7 @@
     flex: 8;
     margin: 10px;
     font-size: 50px;
+    background-color: "#FAFCFF" !important;
   }
 
   .cart-button {
@@ -43,5 +45,32 @@
       width: 50px;
       margin: 10px;
     }
+  }
+}
+
+.shop-menu {
+  position: absolute;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+  left: 12%;
+  @media only screen and (max-width: 3500px) {
+    width: 1000px;
+  }
+  @media only screen and (max-width: 2300px) {
+    width: 800px;
+  }
+  @media only screen and (max-width: 1200px) {
+    width: 600px;
+  }
+  @media only screen and (max-width: 900px) {
+    width: 400px;
+  }
+  @media only screen and (max-height: 1400px) {
+    height: 600px;
+  }
+  @media only screen and (max-height: 1000px) {
+    height: 400px;
   }
 }

@@ -40,6 +40,7 @@
   color: #fafcff;
   margin-top: 20px;
   margin-left: 10px;
+  cursor: default;
 }
 
 .nav .shop-button h2 {
@@ -52,6 +53,7 @@
           flex: 8;
   margin: 10px;
   font-size: 50px;
+  background-color: "#FAFCFF" !important;
 }
 
 .nav .cart-button {
@@ -63,5 +65,51 @@
 .nav .cart-button .cart {
   width: 50px;
   margin: 10px;
+}
+
+.shop-menu {
+  position: absolute;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
+  left: 12%;
+}
+
+@media only screen and (max-width: 3500px) {
+  .shop-menu {
+    width: 1000px;
+  }
+}
+
+@media only screen and (max-width: 2300px) {
+  .shop-menu {
+    width: 800px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .shop-menu {
+    width: 600px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .shop-menu {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-height: 1400px) {
+  .shop-menu {
+    height: 600px;
+  }
+}
+
+@media only screen and (max-height: 1000px) {
+  .shop-menu {
+    height: 400px;
+  }
 }
 /*# sourceMappingURL=Navbar.css.map */
