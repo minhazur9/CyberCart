@@ -75,6 +75,7 @@
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
   left: 12%;
+  display: none;
 }
 
 @media only screen and (max-width: 3500px) {
@@ -110,6 +111,44 @@
 @media only screen and (max-height: 1000px) {
   .shop-menu {
     height: 400px;
+  }
+}
+
+.shop-menu .category-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 15px;
+  row-gap: 70px;
+}
+
+.shop-menu .category-list .category {
+  color: #2d78f0;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 3500px) {
+  .shop-menu .category-list .category {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 2300px) {
+  .shop-menu .category-list .category {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .shop-menu .category-list .category {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .shop-menu .category-list .category {
+    font-size: 11px;
   }
 }
 /*# sourceMappingURL=Navbar.css.map */
