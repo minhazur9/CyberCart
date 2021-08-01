@@ -135,37 +135,64 @@
 .shop-menu .category-list {
   display: -ms-grid;
   display: grid;
+  height: 100%;
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 15px;
-  row-gap: 70px;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.shop-menu .category-list > :not(:nth-child(4n)) {
+  border-right: #2d78f0 1px solid;
+}
+
+.shop-menu .category-list > :not(:nth-last-child(-n + 4)) {
+  border-bottom: #2d78f0 1px solid;
 }
 
 .shop-menu .category-list .category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+.shop-menu .category-list .category:hover {
+  background-color: #dadada;
+}
+
+.shop-menu .category-list .category a {
   color: #2d78f0;
   text-decoration: none;
 }
 
 @media only screen and (max-width: 3500px) {
-  .shop-menu .category-list .category {
+  .shop-menu .category-list .category a {
     font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 2300px) {
-  .shop-menu .category-list .category {
+  .shop-menu .category-list .category a {
     font-size: 17px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .shop-menu .category-list .category {
+  .shop-menu .category-list .category a {
     font-size: 14px;
   }
 }
 
 @media only screen and (max-width: 900px) {
-  .shop-menu .category-list .category {
+  .shop-menu .category-list .category a {
     font-size: 11px;
   }
 }
@@ -183,47 +210,79 @@
 @media only screen and (min-width: 3501px) {
   .account-menu {
     right: 5%;
-    width: 500px;
+    width: 250px;
   }
 }
 
 @media only screen and (max-width: 3500px) {
   .account-menu {
     right: 5%;
-    width: 400px;
+    width: 250px;
   }
 }
 
 @media only screen and (max-width: 2300px) {
   .account-menu {
     right: 6%;
-    width: 300px;
+    width: 200px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .account-menu {
     right: 8%;
-    width: 250px;
+    width: 200px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .account-menu {
     right: 10%;
-    width: 200px;
+    width: 150px;
   }
 }
 
 @media only screen and (max-height: 1400px) {
   .account-menu {
-    height: 300px;
+    height: 100px;
   }
 }
 
 @media only screen and (max-height: 1000px) {
   .account-menu {
-    height: 200px;
+    height: 150px;
   }
+}
+
+.account-menu :not(:last-child) {
+  border-bottom: #2d78f0 1px solid;
+}
+
+.account-menu .account-link {
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.account-menu .account-link a {
+  display: block;
+  text-decoration: none;
+  color: #2d78f0;
+}
+
+.account-menu .account-link:hover {
+  background-color: #dadada;
 }
 /*# sourceMappingURL=Navbar.css.map */

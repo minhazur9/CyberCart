@@ -26,9 +26,25 @@ const Navbar = () => {
     const renderShopCategories = () => {
         return shopCategories.map((category, index) => {
             return (
-                <Link key={category + index} data-testid="category" className="category" to="/shop">{category}</Link>
+                <div className="category">
+                    <Link key={category + index} data-testid="category" to="/shop">{category}</Link>
+                </div>
             )
         })
+    }
+
+    // renders account links
+    const renderAccountLinks = () => {
+        return (
+            <>
+                <div className="account-link">
+                    <Link to="/account" >Account Information</Link>
+                </div>
+                <div className="account-link">
+                    <Link to="/">Logout</Link>
+                </div>
+            </>
+        )
     }
 
     // Renders sign in button
@@ -63,7 +79,7 @@ const Navbar = () => {
                     onMouseOver={() => setAccountMenuVisible(true)}
                     onMouseOut={() => setAccountMenuVisible(false)}
                 >
-
+                    {renderAccountLinks()}
                 </div>
             </>
         )

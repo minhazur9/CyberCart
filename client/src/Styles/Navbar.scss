@@ -92,23 +92,38 @@
   }
   .category-list {
     display: grid;
+    height: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin: 15px;
-    row-gap: 70px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    > :not(:nth-child(4n)) {
+      border-right: #2d78f0 1px solid;
+    }
+    > :not(:nth-last-child(-n + 4)) {
+      border-bottom: #2d78f0 1px solid;
+    }
     .category {
-      color: #2d78f0;
-      text-decoration: none;
-      @media only screen and (max-width: 3500px) {
-        font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 500ms;
+      &:hover {
+        background-color: #dadada;
       }
-      @media only screen and (max-width: 2300px) {
-        font-size: 17px;
-      }
-      @media only screen and (max-width: 1200px) {
-        font-size: 14px;
-      }
-      @media only screen and (max-width: 900px) {
-        font-size: 11px;
+      a {
+        color: #2d78f0;
+        text-decoration: none;
+        @media only screen and (max-width: 3500px) {
+          font-size: 20px;
+        }
+        @media only screen and (max-width: 2300px) {
+          font-size: 17px;
+        }
+        @media only screen and (max-width: 1200px) {
+          font-size: 14px;
+        }
+        @media only screen and (max-width: 900px) {
+          font-size: 11px;
+        }
       }
     }
   }
@@ -123,28 +138,46 @@
   top: 100%;
   @media only screen and (min-width: 3501px) {
     right: 5%;
-    width: 500px;
+    width: 250px;
   }
   @media only screen and (max-width: 3500px) {
     right: 5%;
-    width: 400px;
+    width: 250px;
   }
   @media only screen and (max-width: 2300px) {
     right: 6%;
-    width: 300px;
+    width: 200px;
   }
   @media only screen and (max-width: 1200px) {
     right: 8%;
-    width: 250px;
+    width: 200px;
   }
   @media only screen and (max-width: 900px) {
     right: 10%;
-    width: 200px;
+    width: 150px;
   }
   @media only screen and (max-height: 1400px) {
-    height: 300px;
+    height: 100px;
   }
   @media only screen and (max-height: 1000px) {
-    height: 200px;
+    height: 150px;
+  }
+  :not(:last-child) {
+    border-bottom: #2d78f0 1px solid;
+  }
+  .account-link {
+    transition: 500ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    a {
+      display: block;
+      text-decoration: none;
+      color: #2d78f0;
+    }
+    &:hover {
+      background-color: #dadada;
+    }
   }
 }

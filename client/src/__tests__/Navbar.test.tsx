@@ -64,6 +64,7 @@ describe("Navbar", () => {
             expect(categories.length).toBe(16)
         })
     })
+    
     describe("Account Menu", () => {
         test("the account sub menu should be rendered on mouse over the username", () => {
              render(<MockNavbar/>)
