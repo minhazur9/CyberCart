@@ -1,8 +1,10 @@
-const { gql } = require('apollo-server-express')
+const bycrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
 
-const typeDefs = gql`{
-    type User {
-        id: ID!
-        username
-    }
-}`
+const { JWT_SECRET } = process.env;
+
+const resolvers = {
+    
+}
+
+export default resolvers
