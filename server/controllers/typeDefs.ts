@@ -7,8 +7,14 @@ type User {
     email: String!
     token: String!
 }
+type File {
+    url: String!
+}
 type Query {
     user(id:ID!): User! 
+}
+type Mutation {
+    singleUpload(file: Upload!): File!
 }
 `
 

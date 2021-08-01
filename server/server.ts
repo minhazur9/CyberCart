@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const session = require('express-session');
-const morgan = require('morgan');
+const morgan = require('morgan')
 const cors = require('cors')
 const { ApolloServer } = require('apollo-server-express')
 import typeDefs from './controllers/typeDefs'
@@ -26,6 +26,7 @@ const startServer = async () => {
         saveUninitialized: true
     }))
 
+
     // Serve Production build
     if (process.env.NODE_ENV === "production") {
         app.use(express.static('client/build'));
@@ -37,4 +38,5 @@ const startServer = async () => {
 }
 
 startServer()
+
 

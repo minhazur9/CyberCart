@@ -26,8 +26,8 @@ const Navbar = () => {
     const renderShopCategories = () => {
         return shopCategories.map((category, index) => {
             return (
-                <div className="category">
-                    <Link key={category + index} data-testid="category" to="/shop">{category}</Link>
+                <div key={category + index} className="category">
+                    <Link data-testid="category" to="/shop">{category}</Link>
                 </div>
             )
         })
