@@ -1,0 +1,13 @@
+#shop-page {
+    display: flex;
+    h1 {
+        margin: 20px;
+        margin-left: 35px;
+    }
+    .shopping-filters {
+        margin-top: 50px;
+        flex: 0.3;
+        height: 100vh;
+        background-color: rgb(243, 243, 243);
+    }
+}

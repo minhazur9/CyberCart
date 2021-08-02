@@ -1,0 +1,20 @@
+#shop-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#shop-page h1 {
+  margin: 20px;
+  margin-left: 35px;
+}
+
+#shop-page .shopping-filters {
+  margin-top: 50px;
+  -webkit-box-flex: 0.3;
+      -ms-flex: 0.3;
+          flex: 0.3;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+/*# sourceMappingURL=ShopPage.css.map */

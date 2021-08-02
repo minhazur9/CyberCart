@@ -48,7 +48,7 @@ const Navbar = () => {
                         to="/account"
                         onClick={() => setAccountMenuVisible(false)}
                     >
-                        <p>Account Information</p>
+                        <p role="link"> Account Information</p>
                     </Link>
                 </div>
                 <div className="account-link">
@@ -59,7 +59,7 @@ const Navbar = () => {
                             setAccountMenuVisible(false)
                         }}
                     >
-                        <p>Logout</p>
+                        <p role="textbox">Logout</p>
                     </Link>
                 </div>
             </>
@@ -98,10 +98,23 @@ const Navbar = () => {
                     onMouseOver={() => setAccountMenuVisible(true)}
                     onMouseOut={() => setAccountMenuVisible(false)}
                 >
+                    {renderEditShopButton()}
                     {renderAccountLinks()}
                 </div>
             </>
         )
+    }
+
+    // Renders edit shop button
+    const renderEditShopButton = () => {
+        return <div
+            className="account-link"
+        >
+            <Link to="/shop/edit">
+                <p>Edit Shop</p>
+            </Link>
+
+        </div>
     }
 
     return (

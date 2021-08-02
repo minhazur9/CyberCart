@@ -10,6 +10,9 @@ const ShopPage = () => {
     console.log(categoryName)
     return (
         <div id="shop-page">
+            <div className="shopping-filters">
+                 
+            </div>
             <h1>Shop {categoryName}</h1>
         </div>
     )

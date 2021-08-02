@@ -1,4 +1,6 @@
 @import url(/home/min/Projects/CyberCart/client/src/Styles/Navbar.css);
+@import url(/home/min/Projects/CyberCart/client/src/Styles/ShopPage.css);
+@import url(/home/min/Projects/CyberCart/client/src/Styles/EditShopPage.css);
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
