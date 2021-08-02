@@ -27,7 +27,13 @@ const Navbar = () => {
         return shopCategories.map((category, index) => {
             return (
                 <div key={category + index} className="category">
-                    <Link data-testid="category" to="/shop">{category}</Link>
+                    <Link
+                        data-testid="category"
+                        to={{ pathname: "/shop", state: { categoryName: category } }}
+                        onClick={() => setShopMenuVisible(false)}
+                    >
+                        <p>{category}</p>
+                    </Link>
                 </div>
             )
         })
@@ -38,10 +44,23 @@ const Navbar = () => {
         return (
             <>
                 <div className="account-link">
-                    <Link to="/account" >Account Information</Link>
+                    <Link
+                        to="/account"
+                        onClick={() => setAccountMenuVisible(false)}
+                    >
+                        <p>Account Information</p>
+                    </Link>
                 </div>
                 <div className="account-link">
-                    <Link to="/">Logout</Link>
+                    <Link
+                        to="/"
+                        onClick={() => {
+                            setLoggedIn(false)
+                            setAccountMenuVisible(false)
+                        }}
+                    >
+                        <p>Logout</p>
+                    </Link>
                 </div>
             </>
         )
