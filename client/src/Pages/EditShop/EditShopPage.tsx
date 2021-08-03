@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, } from 'react'
 import { FormControl, Select, InputLabel, makeStyles, Theme, createStyles, TextField, MenuItem } from '@material-ui/core'
 import shopCategories from '../../data/shopCategories';
+const CurrencyTextField = require('@unicef/material-ui-currency-textfield').default
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: 10
         },
         numberField: {
+            marginTop: 10,
             maxWidth: 200
         }
     }),
@@ -113,20 +115,18 @@ const EditShopPage = () => {
     // renders the price field
     const renderEditPrice = () => {
         return (
-            <TextField
-               label="Price"
-               id="price-field"
-               type="number"
-               className={classes.numberField}
-               value={itemPrice}
-               onChange={handlePriceChange}
-               inputProps={{
-                   min: 0,
-                   step: "1.00"
-               }}
-            >
-
-            </TextField>
+            <CurrencyTextField
+                label="Price"
+                variant="outlined"
+                currencySymbol="$"
+                outputFormat="number"
+                minimumValue="0"
+                decimalCharacter="."
+                digitGroupSeparator=","
+                className={classes.numberField}
+                value={itemPrice}
+                onBlur={handlePriceChange}
+            />
         )
     }
 
