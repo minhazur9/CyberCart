@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import EditShopPage from '../Pages/EditShopPage'
-import HomePage from '../Pages/HomePage'
-import ShopPage from '../Pages/ShopPage'
+import EditShopPage from '../Pages/EditShop/EditShopPage'
+import HomePage from '../Pages/Home/HomePage'
+import ShopPage from '../Pages/Shop/ShopPage'
 
 // The Pages
 const Routes = () => {

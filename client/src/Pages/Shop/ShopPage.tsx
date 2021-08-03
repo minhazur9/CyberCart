@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import ShopFilter from '../Components/ShopFilter/ShopFilter'
+import ShopFilter from '../../Components/ShopFilter/ShopFilter'
 
 interface shopProps {
     category: string
