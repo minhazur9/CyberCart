@@ -1,0 +1,14 @@
+#edit-shop-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    margin-top: 20px;
+  }
+  .edit-shop-form {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}

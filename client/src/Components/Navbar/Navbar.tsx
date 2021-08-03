@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import ShoppingCart from '../../Styles/ShoppingCart.svg'
-import Cart from '../../Styles/Cart.svg'
+import ShoppingCart from '../../Styles/svg/ShoppingCart.svg'
+import Cart from '../../Styles/svg/Cart.svg'
 import { TextField } from '@material-ui/core'
 import { makeStyles } from "@material-ui/core/styles"
 import shopCategories from '../../data/shopCategories'
@@ -29,7 +29,7 @@ const Navbar = () => {
                 <div key={category + index} className="category">
                     <Link
                         data-testid="category"
-                        to={{ pathname: "/shop", state: { categoryName: category } }}
+                        to={`/shop/${category.toLowerCase()}`}
                         onClick={() => setShopMenuVisible(false)}
                     >
                         <p>{category}</p>

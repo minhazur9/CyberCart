@@ -1,19 +1,17 @@
 import React from 'react'
-import { useLocation } from 'react-router'
+import { useParams } from 'react-router'
+import ShopFilter from '../Components/ShopFilter/ShopFilter'
 
 interface shopProps {
-    categoryName: string
+    category: string
 }
 
 const ShopPage = () => {
-    const { categoryName } = useLocation<shopProps>().state
-    console.log(categoryName)
+    const { category } = useParams<shopProps>()
     return (
         <div id="shop-page">
-            <div className="shopping-filters">
-                 
-            </div>
-            <h1>Shop {categoryName}</h1>
+            {ShopFilter()}
+            <h1>Shop {category}</h1>
         </div>
     )
 }
