@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, } from 'react'
-import { FormControl, Select, InputLabel, makeStyles, Theme, createStyles, TextField, MenuItem } from '@material-ui/core'
+import { FormControl, Select, InputLabel, makeStyles, Theme, createStyles, TextField, MenuItem, Button } from '@material-ui/core'
 import shopCategories from '../../data/shopCategories';
 const CurrencyTextField = require('@unicef/material-ui-currency-textfield').default
 
@@ -21,16 +21,27 @@ const useStyles = makeStyles((theme: Theme) =>
         numberField: {
             marginTop: 10,
             maxWidth: 200
+        },
+        imageButton: {
+            marginTop: 15,
+            maxWidth: 200
+        },
+        button: {
+            marginTop: 15,
         }
+
     }),
 );
 
 const EditShopPage = () => {
 
     const [category, setCategory] = useState("") // item category
+    const [model, setModel] = useState("") // model number
     const [itemName, setItemName] = useState("") // item name
     const [itemDescription, setItemDescription] = useState("") // item description
+    const [company, setCompany] = useState("") // set item manufacturer
     const [itemPrice, setItemPrice] = useState("0.00") // item price
+    const [itemImage, setItemImage] = useState("") // item image
 
     const classes = useStyles()
 
@@ -63,6 +74,22 @@ const EditShopPage = () => {
         setItemPrice(event.target.value as string)
     }
 
+    // handles item manufacturer change
+    const handleCompanyChange = (event: ChangeEvent<{ value: unknown }>) => {
+        setCompany(event.target.value as string)
+    }
+
+    // handles model change
+    const handleModelChange = (event: ChangeEvent<{ value: unknown }>) => {
+        setModel(event.target.value as string)
+    }
+
+    // handles item image change 
+    const handleImageChange = (event: any) => {
+        const image = URL.createObjectURL(event.target.files[0])
+        setItemImage(image)
+    }
+
     // renders category select
     const renderEditCategory = () => {
         return (
@@ -78,6 +105,20 @@ const EditShopPage = () => {
                     {renderCategories()}
                 </Select>
             </>
+        )
+    }
+
+    // render model field
+    const renderEditModel = () => {
+        return (
+            <TextField
+                label="Model"
+                id="model-field"
+                className={classes.textField}
+                value={model}
+                onChange={handleModelChange}
+            >
+            </TextField>
         )
     }
 
@@ -112,6 +153,39 @@ const EditShopPage = () => {
         )
     }
 
+    // render item manufacturer field
+    const renderEditCompany = () => {
+        return (
+            <TextField
+                label="Manufacturer"
+                id="manufacurer-field"
+                className={classes.textField}
+                value={company}
+                onChange={handleCompanyChange}
+            >
+            </TextField>
+        )
+    }
+
+    // renders image upload button
+    const renderEditImage = () => {
+        return (
+            <Button
+                variant="contained"
+                className={classes.imageButton}
+                color="primary"
+                component="label"
+            >
+                Upload Image
+                <input
+                    type="file"
+                    hidden accept=".png, .jpg"
+                    onChange={handleImageChange}
+                />
+            </Button>
+        )
+    }
+
     // renders the price field
     const renderEditPrice = () => {
         return (
@@ -136,9 +210,19 @@ const EditShopPage = () => {
             <div className="edit-shop-form">
                 <FormControl className={classes.formControl} role="form" >
                     {renderEditCategory()}
+                    {renderEditModel()}
                     {renderEditName()}
                     {renderEditDescription()}
+                    {renderEditCompany()}
                     {renderEditPrice()}
+                    {renderEditImage()}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                    >
+                        Add Item
+                    </Button>
                 </FormControl>
             </div>
         )
