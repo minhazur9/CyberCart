@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import EditShopPage from '../EditShopPage';
+import EditShopPage from '../Pages/EditShop/EditShopPage';
 
 describe("EditShopPage", () => {
     describe("Edit Shop Form", () => {
@@ -10,15 +10,6 @@ describe("EditShopPage", () => {
             render(<EditShopPage />)
             const editForm = screen.getByRole("form")
             expect(editForm).toBeVisible()
-        })
-
-        test("When Catagory is selected it should be displayed", () => {
-            render(<EditShopPage />)
-            const editCategory = screen.getByRole("button")
-            userEvent.click(editCategory)
-            const appliances = screen.getByText("Appliances")
-            userEvent.click(appliances)
-            expect(editCategory.textContent).toBe("Appliances")
         })
 
         test("Name should be displayed when typed", () => {
@@ -33,6 +24,13 @@ describe("EditShopPage", () => {
             const editDescription = screen.getByRole("textbox", { name: /Description/i }) as HTMLInputElement
             userEvent.type(editDescription, "It is a super expensive phone")
             expect(editDescription.value).toBe("It is a super expensive phone")
+        })
+
+        test("Model should be displayed when typed", () => {
+            render(<EditShopPage />)
+            const editModel = screen.getByRole("textbox", { name: /Model/i }) as HTMLInputElement
+            userEvent.type(editModel, "DDS82023RE506RTGR0")
+            expect(editModel.value).toBe("DDS82023RE506RTGR0")
         })
     })
 })

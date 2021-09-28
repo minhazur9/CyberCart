@@ -4,6 +4,7 @@ const session = require('express-session');
 const morgan = require('morgan')
 const cors = require('cors')
 const { ApolloServer } = require('apollo-server-express')
+import { graphqlUploadExpress } from 'graphql-upload'
 import typeDefs from './controllers/typeDefs'
 import resolvers from './controllers/resolvers'
 
@@ -11,13 +12,14 @@ const startServer = async () => {
     const server = new ApolloServer({ typeDefs, resolvers })
     const app = express()
     await server.start()
+    app.use(graphqlUploadExpress())
     server.applyMiddleware({ app, path: "/graphql" })
 
-    // Environment Variables
+    // // Environment Variables
     const PORT = process.env.PORT || 4000;
     const SECRET = process.env.SESSION_SECRET;
 
-    // Middleware
+    // // Middleware
     app.use(cors())
     app.use(morgan('tiny'))
     app.use(session({
@@ -27,7 +29,7 @@ const startServer = async () => {
     }))
 
 
-    // Serve Production build
+    // // Serve Production build
     if (process.env.NODE_ENV === "production") {
         app.use(express.static('client/build'));
     }
