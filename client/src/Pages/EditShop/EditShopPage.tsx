@@ -43,14 +43,22 @@ const EditShopPage = () => {
     const [model, setModel] = useState("") // model number
     const [name, setName] = useState("") // item name
     const [description, setDescription] = useState("") // item description
-    const [company, setCompany] = useState("") // set item manufacturer
+    const [manufacturer, setManufacturer] = useState("") // set item manufacturer
     const [price, setPrice] = useState("0.00") // item price
     const [image, setImage] = useState("") // item image
 
-    // const [addProduct] = useMutation(ADD_PRODUCT)
-    const [uploadFile] = useMutation(UPLOAD_FILE, {
-        onCompleted: data => console.log(data)
-    })
+    const [addProduct] = useMutation(ADD_PRODUCT, {
+        onCompleted: () => {
+            setCategory("")
+            setModel("")
+            setName("")
+            setDescription("")
+            setManufacturer("")
+            setPrice("0.00")
+            setImage("")
+        }
+    }
+    )
     const classes = useStyles()
 
     // renders categories
@@ -83,8 +91,8 @@ const EditShopPage = () => {
     }
 
     // handles item manufacturer change
-    const handleCompanyChange = (e: ChangeEvent<{ value: unknown }>) => {
-        setCompany(e.target.value as string)
+    const handleManufacturerChange = (e: ChangeEvent<{ value: unknown }>) => {
+        setManufacturer(e.target.value as string)
     }
 
     // handles model change
@@ -169,8 +177,8 @@ const EditShopPage = () => {
                 label="Manufacturer"
                 id="manufacurer-field"
                 className={classes.textField}
-                value={company}
-                onChange={handleCompanyChange}
+                value={manufacturer}
+                onChange={handleManufacturerChange}
             >
             </TextField>
         )
@@ -215,19 +223,17 @@ const EditShopPage = () => {
 
     // Handle new product submit form
     const submitForm = () => {
-        // addProduct({
-        //     variables: {
-        //         category,
-        //         model,
-        //         name: Name,
-        //         description: description,
-        //         company,
-        //         price: itemPrice,
-        //         image: itemImage
-        //     }
-        // })
-
-        uploadFile({ variables: { image } })
+        addProduct({
+            variables: {
+                model,
+                name,
+                price,
+                category,
+                description,
+                manufacturer,
+                image
+            }
+        })
     }
 
     // renders form

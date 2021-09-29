@@ -23,7 +23,7 @@ type Query {
     user(id:ID!): User! 
 }
 type Mutation {
-    addProduct(category: String!, name: String!, model: String!, description: String!, price: String!, manufacturer: String!, file: Upload!): Product
+    addProduct(category: String!, name: String!, model: String!, description: String!, price: String!, manufacturer: String!, image: Upload!): Product
     singleUpload(file: Upload!): String
 }
 `
