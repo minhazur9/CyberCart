@@ -7,12 +7,14 @@ const { ApolloServer } = require('apollo-server-express')
 import { graphqlUploadExpress } from 'graphql-upload'
 import typeDefs from './controllers/typeDefs'
 import resolvers from './controllers/resolvers'
+import { join } from 'path';
 
 const startServer = async () => {
     const server = new ApolloServer({ typeDefs, resolvers })
     const app = express()
     await server.start()
     app.use(graphqlUploadExpress())
+    app.use(express.static(join(__dirname, './uploads')))
     server.applyMiddleware({ app, path: "/graphql" })
 
     // // Environment Variables

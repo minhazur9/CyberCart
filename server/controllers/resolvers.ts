@@ -8,6 +8,18 @@ import { parse, join } from 'path';
 import { createWriteStream } from 'fs';
 import { uploadFile } from './upload'
 
+const singleUpload = async (file) => {
+    const { filename, createReadStream } = await file
+    const stream = createReadStream()
+    let { name, ext } = parse(filename)
+    name = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '-')
+    let serverFile = join(__dirname, `../uploads/${name}-${Date.now()}${ext}`)
+    const writeStream = await createWriteStream(serverFile)
+    await stream.pipe(writeStream)
+    serverFile = `${process.env.URL}${serverFile.split('uploads')[1]}`
+    return serverFile
+}
+
 
 const resolvers = {
 
@@ -19,7 +31,9 @@ const resolvers = {
         // }
     },
     Mutation: {
-        addProduct: async (parent, { name, model, description, manufacturer, price, category }) => {
+        addProduct: async (parent, { name, model, description, manufacturer, price, category, file }) => {
+            const imageLink = await singleUpload(file)
+            console.log(imageLink)
             return await db.Product.create({
                 name,
                 model,
@@ -27,6 +41,7 @@ const resolvers = {
                 manufacturer,
                 price: price,
                 category,
+                image: imageLink
             })
         },
         singleUpload: async (parent, { file }) => {
@@ -34,10 +49,10 @@ const resolvers = {
             const stream = createReadStream()
             let { name, ext } = parse(filename)
             name = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '-')
-            let serverFile = join(__dirname, `../uploads/${name}-${new Date()}${ext}`)
+            let serverFile = join(__dirname, `../uploads/${name}-${Date.now()}${ext}`)
             const writeStream = await createWriteStream(serverFile)
             await stream.pipe(writeStream)
-            serverFile = `${process.env.MONGODB_URI}${serverFile.split('uploads')[1]}`
+            serverFile = `${process.env.URL}${serverFile.split('uploads')[1]}`
             return serverFile
         }
     }
