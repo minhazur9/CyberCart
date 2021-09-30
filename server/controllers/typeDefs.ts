@@ -18,12 +18,13 @@ type Product {
     price: String!
     manufacturer: String!
     image: String!
+    quantity: Int!
 }
 type Query {
     user(id:ID!): User! 
 }
 type Mutation {
-    addProduct(category: String!, name: String!, model: String!, description: String!, price: String!, manufacturer: String!, image: Upload!): Product
+    addProduct(category: String!, name: String!, model: String!, description: String!, price: String!, manufacturer: String!, image: Upload!, quantity: Int!): Product
     singleUpload(file: Upload!): String
 }
 `

@@ -30,7 +30,7 @@ const resolvers = {
         // }
     },
     Mutation: {
-        addProduct: async (parent, { name, model, description, manufacturer, price, category, image }) => {
+        addProduct: async (parent, { name, model, description, manufacturer, price, category, image, quantity }) => {
             const imageLink = await singleUpload(image)
             return await db.Product.create({
                 name,
@@ -39,7 +39,8 @@ const resolvers = {
                 manufacturer,
                 price: price,
                 category,
-                image: imageLink
+                image: imageLink,
+                quantity,
             })
         },
     }

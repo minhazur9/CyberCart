@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, } from 'react'
 import { FormControl, Select, InputLabel, makeStyles, Theme, createStyles, TextField, MenuItem, Button } from '@material-ui/core'
 import shopCategories from '../../data/shopCategories';
 import { useMutation } from '@apollo/client';
-import { ADD_PRODUCT, UPLOAD_FILE } from '../../queries/productQueries';
+import { ADD_PRODUCT } from '../../queries/productQueries';
 
 const CurrencyTextField = require('@unicef/material-ui-currency-textfield').default
 
@@ -46,6 +46,7 @@ const EditShopPage = () => {
     const [manufacturer, setManufacturer] = useState("") // set item manufacturer
     const [price, setPrice] = useState("0.00") // item price
     const [image, setImage] = useState("") // item image
+    const [quantity, setQuantity] = useState(0) // item quantity
 
     const [addProduct] = useMutation(ADD_PRODUCT, {
         onCompleted: () => {
@@ -56,6 +57,7 @@ const EditShopPage = () => {
             setManufacturer("")
             setPrice("0.00")
             setImage("")
+            setQuantity(0)
         }
     }
     )
@@ -104,6 +106,13 @@ const EditShopPage = () => {
     const handleImageChange = (e: any) => {
         const image = e.target.files[0]
         setImage(image)
+    }
+
+    // handle item quantity change
+    const handleQuantityChange = (e: ChangeEvent<{ value: unknown }>) => {
+        const inputQuantity = Number(e.target.value)
+        if (inputQuantity < 0) setQuantity(0)
+        else setQuantity(inputQuantity)
     }
 
     // renders category select
@@ -170,6 +179,21 @@ const EditShopPage = () => {
         )
     }
 
+    // renders item quantity field
+    const renderEditQuantity = () => {
+        return (
+            <TextField
+                label="Quantity"
+                id="quantity-field"
+                type="number"
+                className={classes.numberField}
+                value={quantity}
+                onChange={handleQuantityChange}
+            >
+            </TextField>
+        )
+    }
+
     // render item manufacturer field
     const renderEditCompany = () => {
         return (
@@ -227,11 +251,12 @@ const EditShopPage = () => {
             variables: {
                 model,
                 name,
-                price,
+                price: price.replace(/,/g, ""),
                 category,
                 description,
                 manufacturer,
-                image
+                image,
+                quantity
             }
         })
     }
@@ -245,6 +270,7 @@ const EditShopPage = () => {
                     {renderEditModel()}
                     {renderEditName()}
                     {renderEditDescription()}
+                    {renderEditQuantity()}
                     {renderEditCompany()}
                     {renderEditPrice()}
                     {renderEditImage()}
