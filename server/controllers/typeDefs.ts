@@ -21,6 +21,7 @@ type Product {
     quantity: Int!
 }
 type Query {
+    getProducts(category: String!): [Product!]!
     user(id:ID!): User! 
 }
 type Mutation {

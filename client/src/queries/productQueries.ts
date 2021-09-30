@@ -15,12 +15,13 @@ export const ADD_PRODUCT = gql`
     }
 `
 
-export const UPLOAD_FILE = gql`
-    mutation($file: Upload!) {
-        singleUpload(file: $file) {
-            filename
-            mimetype
-            encoding
+export const GET_PRODUCTS = gql`
+    query($category: String!) {
+        getProducts(category: $category) {
+            name
+            price
+            manufacturer
+            image
         }
     }
 `

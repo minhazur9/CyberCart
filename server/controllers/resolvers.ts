@@ -19,20 +19,25 @@ const singleUpload = async (image) => {
     return serverFile
 }
 
+// Format Search Filter 
+const formatSearchFilter = (filter: string) => {
+    return filter.charAt(0).toUpperCase() + filter.slice(1)
+}
+
 
 const resolvers = {
 
     Upload: GraphQLUpload,
 
     Query: {
-        // getImage: async (parent, args) => {
-
-        // }
+        getProducts: async (parent, { category }) => {
+            return db.Product.find({ category: formatSearchFilter(category) })
+        }
     },
     Mutation: {
         addProduct: async (parent, { name, model, description, manufacturer, price, category, image, quantity }) => {
             const imageLink = await singleUpload(image)
-            return await db.Product.create({
+            return db.Product.create({
                 name,
                 model,
                 description,
