@@ -37,6 +37,7 @@ const retreiveUpload = async (fileKey: string) => {
     const downloadParams = {
         Key: fileKey,
         Bucket: bucketName,
+        Expires: 3600
     }
     const uploadURL = await bucket.getSignedUrlPromise('getObject', downloadParams)
     return uploadURL
