@@ -1,29 +1,46 @@
 const db = require('../models');
 const bycrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+const s3 = require('aws-sdk/clients/s3')
 const { GraphQLUpload } = require('graphql-upload')
-import { parse, join } from 'path';
-import { createWriteStream } from 'fs';
+import { v5 as uuidv5 } from 'uuid'
+import Upload from '../interfaces/Upload'
+
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_KEY
+
+// initializing S3 bucket
+const bucket = new s3({
+    region,
+    accessKeyId,
+    secretAccessKey,
+    signatureVersion: 'v4'
+})
 
 // Uploading images
-const singleUpload = async (image) => {
+const singleUpload = async (image: Promise<Upload>) => {
     const { filename, createReadStream } = await image
-    console.log(filename)
+    const imageId = uuidv5(filename, process.env.UUID_NAMESPACE)
     const stream = createReadStream()
-    let { name, ext } = parse(filename)
-    name = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '-')
-    let serverFile = join(__dirname, `../uploads/${name}-${Date.now()}${ext}`)
-    const writeStream = await createWriteStream(serverFile)
-    await stream.pipe(writeStream)
-    serverFile = `${process.env.URL}${serverFile.split('uploads')[1]}`
-    return serverFile
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: stream,
+        Key: imageId,
+    }
+    return bucket.upload(uploadParams).promise()
 }
 
-// Format Search Filter 
-const formatSearchFilter = (filter: string) => {
-    return filter.charAt(0).toUpperCase() + filter.slice(1)
+// Retrieving images
+const retreiveUpload = async (fileKey: string) => {
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName,
+    }
+    const uploadURL = await bucket.getSignedUrlPromise('getObject', downloadParams)
+    return uploadURL
 }
-
 
 const resolvers = {
 
@@ -31,20 +48,26 @@ const resolvers = {
 
     Query: {
         getProducts: async (parent, { category }) => {
-            return db.Product.find({ category: formatSearchFilter(category) })
+            const result = await db.Product.find({ category: category })
+            const newResult = JSON.parse(JSON.stringify(result))
+            newResult.forEach((product) => {
+                console.log(product.image)
+                product["image"] = retreiveUpload(product.image)
+            })
+            return newResult
         }
     },
     Mutation: {
         addProduct: async (parent, { name, model, description, manufacturer, price, category, image, quantity }) => {
-            const imageLink = await singleUpload(image)
+            const { Key } = await singleUpload(image)
             return db.Product.create({
                 name,
                 model,
                 description,
                 manufacturer,
-                price: price,
+                price,
                 category,
-                image: imageLink,
+                image: Key,
                 quantity,
             })
         },

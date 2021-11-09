@@ -25,14 +25,15 @@ const Navbar = () => {
     // renders all shop categories
     const renderShopCategories = () => {
         return shopCategories.map((category, index) => {
+            const { displayName, value } = category
             return (
-                <div key={category + index} className="category">
+                <div key={displayName + index} className="category">
                     <Link
                         data-testid="category"
-                        to={`/shop/${category.toLowerCase()}`}
+                        to={`/shop/${value}`}
                         onClick={() => setShopMenuVisible(false)}
                     >
-                        <p>{category}</p>
+                        <p>{displayName}</p>
                     </Link>
                 </div>
             )

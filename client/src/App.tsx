@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { createTheme, ThemeProvider } from '@material-ui/core';
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client'
 import Navbar from './Components/Navbar/Navbar';
 import Routes from './config/routes';
@@ -15,6 +15,7 @@ const client = new ApolloClient({
   }),
   cache: new InMemoryCache(),
 })
+
 
 // The Material UI Theme
 const theme = createTheme({

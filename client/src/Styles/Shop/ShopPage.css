@@ -12,9 +12,14 @@
 #shop-page .shop-filter {
   margin-top: 50px;
   -webkit-box-flex: 0.3;
-      -ms-flex: 0.3;
-          flex: 0.3;
+  -ms-flex: 0.3;
+  flex: 0.3;
   height: 100vh;
   background-color: #f3f3f3;
+}
+
+.product-listing {
+  display: block;
+  max-height: 100px;
 }
 /*# sourceMappingURL=ShopPage.css.map */

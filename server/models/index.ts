@@ -1,3 +1,4 @@
+import { Error } from "mongoose";
 import Product from "./Product"
 import User from "./User";
 
@@ -14,7 +15,7 @@ mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB')
 })
 
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('error', (err: Error) => {
     console.log(err);
 });
 

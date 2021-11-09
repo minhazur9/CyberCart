@@ -66,8 +66,9 @@ const EditShopPage = () => {
     // renders categories
     const renderCategories = () => {
         return shopCategories.map((category, index) => {
+            const { displayName, value } = category
             return (
-                <MenuItem key={category + index} value={category} role="option" aria-label="category" data-testid="category" >{category}</MenuItem>
+                <MenuItem key={`${displayName}${index}`} value={value} role="option" aria-label="category" data-testid="category" >{displayName}</MenuItem>
             )
         })
     }
