@@ -51,10 +51,9 @@ const resolvers = {
         getProducts: async (parent, { category }) => {
             const result = await db.Product.find({ category: category })
             const newResult = JSON.parse(JSON.stringify(result))
-            newResult.forEach((product) => {
-                console.log(product.image)
-                product["image"] = retreiveUpload(product.image)
-            })
+            for (let i = 0; i < newResult.length; i++) {
+                newResult[i]["image"] = retreiveUpload(newResult[i].image)
+            }
             return newResult
         }
     },

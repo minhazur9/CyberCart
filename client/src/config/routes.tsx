@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Switch } from 'react-router'
 import EditShopPage from '../Pages/EditShop/EditShopPage'
 import HomePage from '../Pages/Home/HomePage'

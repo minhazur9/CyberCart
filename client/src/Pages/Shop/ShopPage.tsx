@@ -1,17 +1,10 @@
 import { useParams } from 'react-router'
 import { useQuery } from '@apollo/client'
 import { GET_PRODUCTS } from '../../queries/productQueries'
-import { Link } from 'react-router-dom'
-import ShopFilter from '../../Components/ShopFilter/ShopFilter'
+import ShopFilter from '../../Components/Shop/ShopFilter'
+import Product from '../../interfaces/Product'
+import ProductListing from '../../Components/Shop/ProductListing'
 
-interface product {
-    name: string,
-    image: string,
-    manufacturer: string,
-    price: number,
-    model: string,
-
-}
 
 // render shop page
 const ShopPage = () => {
@@ -25,22 +18,8 @@ const ShopPage = () => {
     const renderFoundProducts = () => {
         if (loading) console.log("loading")
         else if (error) console.log("error")
-        else return data.getProducts.map((product: product) => {
-            const { name, image, manufacturer, price, model } = product
-            return <div key={name + image} className="product-listing">
-                <Link to={`/product/${model}`}>
-                    <img src={image} alt={name} onError={() => console.log("Forbidden")} />
-                </Link>
-                <div className="product-listing-info">
-                    <Link to={`/product/${model}`}>{name}</Link>
-                    <p>{manufacturer}</p>
-                </div>
-                <h2 className="product-price">
-                    <p>${price}</p>
-                </h2>
-
-
-            </div>
+        else return data.getProducts.map((product: Product) => {
+            return <ProductListing product={product} />
         })
     }
 
@@ -56,7 +35,6 @@ const ShopPage = () => {
                 <h1>Shop {formatCategory(category)}</h1>
                 {renderFoundProducts()}
             </div>
-
         </div>
     )
 }
